@@ -6,7 +6,11 @@ AUTH_DIR.mkdir(parents=True, exist_ok=True)
 STATE = AUTH_DIR / "storage_state.json"
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(
+        headless=False,
+        slow_mo=500,
+        args=["--disable-dev-shm-usage", "--disable-blink-features=AutomationControlled"]
+    )
     context = browser.new_context()
     page = context.new_page()
 
