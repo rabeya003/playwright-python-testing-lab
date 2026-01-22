@@ -18,16 +18,13 @@ with sync_playwright() as p:
     email_input.fill("")  
     page.wait_for_timeout(500) 
 
-    email_input.type("rabeya.boshri003@gmail.com", delay=150)  # 150ms per character (slower typing)
-    page.wait_for_timeout(800)  # pause to see the result (optional)
+    email_input.type("rabeya.boshri003@gmail.com", delay=150)
+    page.get_by_role("button",name="Next").click()
 
-    next_btn=page.get_by_role("button",name="Next")
-
-    next_btn.click()
+    #Enter Pass
     password_input=page.get_by_label("Enter your password")
-    password_input.fill("PASSWORD")
-    next_btn=page.get_by_role("button",name="Next")
-    next_btn.click()
+    password_input.fill("Pass123")
 
+    page.get_by_role("button",name="Next").click()
 
-    email_input.clear()
+    page.pause()
